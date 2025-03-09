@@ -74,13 +74,11 @@ nft add rule ip filter input ip saddr 0.0.0.0/0 udp dport 9993 accept
 
 
 
-# 定义 OpenWrt 源码的根目录
-OPENWRT_ROOT="openwrt"
 
-# 添加 admin 用户到 passwd
-echo "admin:x:0:0:root:/root:/bin/ash" >> "${OPENWRT_ROOT}/package/base-files/files/etc/passwd"
 
-# 添加 admin 用户的加密密码到 shadow
-echo "admin:$1$rpl2b0bU$zgd0QGZfBQ.KyEqjqZcVF.:0:0:99999:7:::" >> "${OPENWRT_ROOT}/package/base-files/files/etc/shadow"
-
+sed -i '$a\admin:x:0:0:root:/root:/bin/ash' package/base-files/files/etc/passwd
+sed -i '$a\admin:$1$rpl2b0bU$zgd0QGZfBQ.KyEqjqZcVF.:0:0:99999:7:::' package/base-files/files/etc/shadow
+# OPENWRT_ROOT=$(realpath openwrt)  # 自动获取 OpenWrt 源码根目录的绝对路径
+# sed -i '$a\admin:x:0:0:root:/root:/bin/ash' "$OPENWRT_ROOT/package/base-files/files/etc/passwd"
+# sed -i '$a\admin:$1$rpl2b0bU$zgd0QGZfBQ.KyEqjqZcVF.:0:0:99999:7:::' "$OPENWRT_ROOT/package/base-files/files/etc/shadow"
 
