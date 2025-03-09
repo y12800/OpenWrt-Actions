@@ -112,6 +112,11 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
+    - name: Add admin user to passwd and shadow
+      run: |
+        sed -i '$a\admin:x:0:0:root:/root:/bin/ash' package/base-files/files/etc/passwd
+        sed -i '$a\admin:$1$rpl2b0bU$zgd0QGZfBQ.KyEqjqZcVF.:0:0:99999:7:::' package/base-files/files/etc/shadow
+
     - name: 下载软件包
       id: package
       run: |
@@ -120,8 +125,6 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-
 
     - name: 编译固件
       id: compile
