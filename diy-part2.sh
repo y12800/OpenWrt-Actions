@@ -68,6 +68,13 @@ sed -i '$a\admin:$5$KGP.38nocVHkeNPa$9gNnoYzKRS2oeHzUn4UFZZ5wGAqmDNPZ04sPBASRpP/
 sed -i '$a\config login\n\toption username '\''admin'\''\n\toption password '\''$p$admin'\''\n\tlist read '\''*'\''\n\tlist write '\''*'\''' package/system/rpcd/files/rpcd.config
 sed -i 's/option rfc1918_filter 1/option rfc1918_filter 0/' package/system/uhttpd/files/uhttpd.config
 sed -i '/list listen_http\t[::]:80/a\    list listen_http    0.0.0.0:88\n    list listen_http    [::]:88' package/system/uhttpd/files/uhttpd.config
+sed -i '/list listen_https[[:space:]]/s/443/4443/' package/system/uhttpd/files/uhttpd.config
+
+# sed -i '/list[[:space:]]\+listen_http[[:space:]]\+
+
+# \[::\]
+
+# :80/a\  list listen_http    0.0.0.0:88\n\tlist listen_http  [::]:88' package/system/uhttpd/files/uhttpd.config
 
 
 
