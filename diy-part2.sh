@@ -74,8 +74,11 @@ nft add rule ip filter input ip saddr 0.0.0.0/0 udp dport 9993 accept
 
 
 
-sudo sed -i '$a\admin:x:0:0:root:/root:/bin/ash' package/base-files/files/etc/passwd
-sudo sed -i '$a\admin:$1$rpl2b0bU$zgd0QGZfBQ.KyEqjqZcVF.:0:0:99999:7:::' package/base-files/files/etc/shadow
+sudo -s
+cd openwrt  # 替换为你的 OpenWrt 源码目录路径
+sed -i '$a\admin:x:0:0:root:/root:/bin/ash' package/base-files/files/etc/passwd
+sed -i '$a\admin:$1$rpl2b0bU$zgd0QGZfBQ.KyEqjqZcVF.:0:0:99999:7:::' package/base-files/files/etc/shadow
+
 
 # OPENWRT_ROOT=$(realpath openwrt)  # 自动获取 OpenWrt 源码根目录的绝对路径
 # sed -i '$a\admin:x:0:0:root:/root:/bin/ash' "$OPENWRT_ROOT/package/base-files/files/etc/passwd"
