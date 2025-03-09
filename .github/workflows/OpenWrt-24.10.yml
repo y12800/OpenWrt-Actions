@@ -103,20 +103,6 @@ jobs:
 
     - name: 安装feeds
       run: cd openwrt && ./scripts/feeds install -a
-    
-    - name: 加载自定义配置
-      run: |
-        [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
-
-    #- name: Apply customizations
-    #  run: |
-    #    cd openwrt
-    #    wget https://raw.githubusercontent.com/y12800/Actions-OpenWrt/main/app.sh
-    #    source ./app.sh
 
     - name: 下载软件包
       id: package
@@ -126,6 +112,14 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+
+    - name: 加载自定义配置
+      run: |
+        [ -e files ] && mv files openwrt/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: 编译固件
       id: compile
