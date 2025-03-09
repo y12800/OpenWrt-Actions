@@ -67,10 +67,6 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 # sed -i 's/luci-theme-openwrt-2020/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
 
-# 创建 admin 用户
-echo "admin:admin" | chpasswd
-usermod -aG root admin
-
 # 添加防火墙规则
 nft add rule ip filter input ip saddr 0.0.0.0/0 tcp dport 9993 accept
 nft add rule ip filter input ip saddr 0.0.0.0/0 udp dport 9993 accept
