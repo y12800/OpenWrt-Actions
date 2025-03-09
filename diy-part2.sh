@@ -70,3 +70,17 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 # 添加防火墙规则
 nft add rule ip filter input ip saddr 0.0.0.0/0 tcp dport 9993 accept
 nft add rule ip filter input ip saddr 0.0.0.0/0 udp dport 9993 accept
+
+
+
+
+# 定义 OpenWrt 源码的根目录
+OPENWRT_ROOT="openwrt"
+
+# 添加 admin 用户到 passwd
+echo "admin:x:0:0:root:/root:/bin/ash" >> "${OPENWRT_ROOT}/package/base-files/files/etc/passwd"
+
+# 添加 admin 用户的加密密码到 shadow
+echo "admin:$1$rpl2b0bU$zgd0QGZfBQ.KyEqjqZcVF.:0:0:99999:7:::" >> "${OPENWRT_ROOT}/package/base-files/files/etc/shadow"
+
+
