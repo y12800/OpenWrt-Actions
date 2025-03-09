@@ -69,6 +69,8 @@ sed -i '$a\config login\n\toption username '\''admin'\''\n\toption password '\''
 sed -i 's/option rfc1918_filter 1/option rfc1918_filter 0/' package/system/uhttpd/files/uhttpd.config
 sed -i '/list listen_http\t[::]:80/a\    list listen_http    0.0.0.0:88\n    list listen_http    [::]:88' package/system/uhttpd/files/uhttpd.config
 sed -i '/list listen_https[[:space:]]/s/443/4443/' package/system/uhttpd/files/uhttpd.config
+sed -i 's/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1' package/network/config/firewall/files/firewall.config
+
 
 # sed -i '/list[[:space:]]\+listen_http[[:space:]]\+
 
