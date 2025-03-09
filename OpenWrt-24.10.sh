@@ -42,12 +42,10 @@ git clone --depth 1 https://github.com/coolsnowwolf/packages deng-tmp3 && mv den
 sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/zerotier/Makefile
 # 官方版
 # mkdir -p feeds/packages/net/zerotier/files/etc/config
-# wget -O feeds/packages/net/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/Actions-OpenWrt/main/app/zerotier && chmod 644 feeds/packages/net/zerotier/files/etc/config/zerotier
+# wget -O feeds/packages/net/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/OpenWrt-Actions/main/app/zerotier && chmod 644 feeds/packages/net/zerotier/files/etc/config/zerotier
 # 第三方
 mkdir -p package/deng/zerotier/files/etc/config
-wget -O package/deng/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/Actions-OpenWrt/main/app/zerotier && chmod 644 package/deng/zerotier/files/etc/config/zerotier
-
-
+wget -O package/deng/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/OpenWrt-Actions/main/app/zerotier && chmod 644 package/deng/zerotier/files/etc/config/zerotier
 
 
 git clone --depth 1 https://github.com/immortalwrt/luci deng-tmp7 && mv deng-tmp7/applications/luci-app-vlmcsd package/deng/luci-app-vlmcsd && mv deng-tmp7/applications/luci-app-socat package/deng/luci-app-socat
