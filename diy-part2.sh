@@ -60,7 +60,7 @@ git clone --depth 1 https://github.com/coolsnowwolf/lede deng-tmp9 && mv deng-tm
 sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/ddns-scripts_aliyun/Makefile
 
 # 修改默认值
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.31.100/g' package/base-files/files/bin/config_generate
 
 sed -i 's/CONFIG_FAT_DEFAULT_IOCHARSET="iso8859-1"/CONFIG_FAT_DEFAULT_IOCHARSET="utf8"/g' target/linux/generic/config-6.6
 
