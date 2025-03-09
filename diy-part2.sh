@@ -64,14 +64,10 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 sed -i 's/CONFIG_FAT_DEFAULT_IOCHARSET="iso8859-1"/CONFIG_FAT_DEFAULT_IOCHARSET="utf8"/g' target/linux/generic/config-6.6
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 sed -i '$a\admin:x:0:0:root:/root:/bin/ash' package/base-files/files/etc/passwd
-sed -i '$a\admin:$1$rpl2b0bU$zgd0QGZfBQ.KyEqjqZcVF.:0:0:99999:7:::' package/base-files/files/etc/shadow
+sed -i '$a\admin:$5$KGP.38nocVHkeNPa$9gNnoYzKRS2oeHzUn4UFZZ5wGAqmDNPZ04sPBASRpP/:0:0:99999:7:::' package/base-files/files/etc/shadow
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/kernel/linux/files/sysctl-nf-conntrack.conf
 # sed -i 's/luci-theme-openwrt-2020/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
-
-# 添加防火墙规则
-nft add rule ip filter input ip saddr 0.0.0.0/0 tcp dport 9993 accept
-nft add rule ip filter input ip saddr 0.0.0.0/0 udp dport 9993 accept
 
 
 
