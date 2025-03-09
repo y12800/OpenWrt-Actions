@@ -68,7 +68,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 
 
 # 创建 admin 用户
-echo "admin:456566" | chpasswd
+echo "admin:admin" | chpasswd
 usermod -aG root admin
 
 # 添加防火墙规则
