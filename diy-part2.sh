@@ -65,6 +65,10 @@ sed -i 's/CONFIG_FAT_DEFAULT_IOCHARSET="iso8859-1"/CONFIG_FAT_DEFAULT_IOCHARSET=
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 sed -i '$a\admin:x:0:0:root:/root:/bin/ash' package/base-files/files/etc/passwd
 sed -i '$a\admin:$5$KGP.38nocVHkeNPa$9gNnoYzKRS2oeHzUn4UFZZ5wGAqmDNPZ04sPBASRpP/:0:0:99999:7:::' package/base-files/files/etc/shadow
+sed -i '$a\config login\n\toption username '\''admin'\''\n\toption password '\''$p$admin'\''\n\tlist read '\''*'\''\n\tlist write '\''*'\''' package/system/rpcd/files/rpcd.config
+
+
+
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/kernel/linux/files/sysctl-nf-conntrack.conf
 # sed -i 's/luci-theme-openwrt-2020/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
