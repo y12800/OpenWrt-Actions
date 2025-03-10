@@ -4,11 +4,11 @@
 # 删除原有软件包
 rm -rf feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/luci/applications/luci-app-filebrowser
-#rm -rf feeds/luci/applications/luci-app-acme
-#rm -rf feeds/packages/net/acme
-#rm -rf feeds/packages/net/acme-acmesh
-#rm -rf feeds/packages/net/acme-common
-# rm -rf feeds/packages/net/zerotier
+rm -rf feeds/packages/net/zerotier
+# rm -rf feeds/luci/applications/luci-app-acme
+# rm -rf feeds/packages/net/acme
+# rm -rf feeds/packages/net/acme-acmesh
+# rm -rf feeds/packages/net/acme-common
 # rm -rf feeds/packages/net/speedtest-go
 # rm -rf feeds/packages/net/socat
 # rm -rf feeds/luci/applications/luci-i18n-filebrowser-zh-cn
@@ -38,14 +38,15 @@ git clone --depth 1 https://github.com/sirpdboy/luci-app-cupsd.git package/deng/
 git clone --depth 1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 git clone --depth 1 https://github.com/immortalwrt-collections/luci-app-diskman.git package/deng/luci-app-diskman
 
-# git clone --depth 1 https://github.com/coolsnowwolf/packages deng-tmp3 && mv deng-tmp3/net/zerotier package/deng/zerotier
-# sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/zerotier/Makefile
-# 官方版
-mkdir -p feeds/packages/net/zerotier/files/etc/config
-wget -O feeds/packages/net/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/OpenWrt-Actions/main/app/zerotier && chmod 644 feeds/packages/net/zerotier/files/etc/config/zerotier
+git clone --depth 1 https://github.com/coolsnowwolf/packages deng-tmp3 && mv deng-tmp3/net/zerotier package/deng/zerotier
+sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/zerotier/Makefile
 # 第三方
-# mkdir -p package/deng/zerotier/files/etc/config
-# wget -O package/deng/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/OpenWrt-Actions/main/app/zerotier && chmod 644 package/deng/zerotier/files/etc/config/zerotier
+mkdir -p package/deng/zerotier/files/etc/config
+wget -O package/deng/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/OpenWrt-Actions/main/app/zerotier && chmod 644 package/deng/zerotier/files/etc/config/zerotier
+# 官方版
+# mkdir -p feeds/packages/net/zerotier/files/etc/config
+# wget -O feeds/packages/net/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/OpenWrt-Actions/main/app/zerotier && chmod 644 feeds/packages/net/zerotier/files/etc/config/zerotier
+
 
 
 git clone --depth 1 https://github.com/immortalwrt/luci deng-tmp7 && mv deng-tmp7/applications/luci-app-vlmcsd package/deng/luci-app-vlmcsd && mv deng-tmp7/applications/luci-app-socat package/deng/luci-app-socat
