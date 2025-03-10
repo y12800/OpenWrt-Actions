@@ -76,7 +76,7 @@ sed -i '/\[::\]:80/a\\tlist listen_http\t0.0.0.0:88\n\tlist listen_http\t[::]:88
 sed -i 's/option rfc1918_filter 1/option rfc1918_filter 0/' package/network/services/uhttpd/files/uhttpd.config
 sed -i '/list listen_https[[:space:]]/s/443/4443/' package/network/services/uhttpd/files/uhttpd.config
 
-sed -i 's/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1' package/network/config/firewall/files/firewall.config
+sed -i 's/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1' package/network/config/firewall4/files/firewall.config
 
 
 
