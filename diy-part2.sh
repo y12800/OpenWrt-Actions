@@ -77,7 +77,7 @@ sed -i 's/option rfc1918_filter 1/option rfc1918_filter 0/' package/network/serv
 sed -i '/list listen_https[[:space:]]/s/443/4443/' package/network/services/uhttpd/files/uhttpd.config
 
 # sed -i 's/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1' package/network/config/firewall/files/firewall.config
-cd Package/firewall4
+cd Package/firewall
 ls
 sed -i 's/REJECT/ACCEPT/g' Package/firewall4/etc/config/firewall
 sed -i '$a config rule\n\toption name '\''OpenWrt'\''\n\toption src '\''*'\''\n\toption target '\''ACCEPT'\''\n\toption dest_port '\''22 88 4443'\''\n\tlist proto '\''tcp'\''\n\tlist proto '\''udp'\''' package/network/config/firewall/files/firewall.config
