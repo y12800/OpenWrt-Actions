@@ -81,7 +81,7 @@ sed -i '/list listen_https[[:space:]]/s/443/4443/' package/network/services/uhtt
 sed -i 's/REJECT/ACCEPT/g' package/network/config/firewall/files/firewall.config
 sed -i '$a config rule\n\toption name '\''OpenWrt'\''\n\toption src '\''*'\''\n\toption target '\''ACCEPT'\''\n\toption dest_port '\''22 88 4443'\''\n\tlist proto '\''tcp'\''\n\tlist proto '\''udp'\''' package/network/config/firewall/files/firewall.config
 
-sed -i '/\$(1)\//a\\t$(CP) $(PKG_BUILD_DIR)/../firewall/files/firewall.config $(1)/etc/config/firewall' package/network/config/firewall4/Makefile
+sed -i '/\$(1)\//a\\t$(CP) -a $(PKG_BUILD_DIR)/../firewall/files/firewall.config $(1)/etc/config/firewall' package/network/config/firewall4/Makefile
 
 
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/kernel/linux/files/sysctl-nf-conntrack.conf
