@@ -76,7 +76,8 @@ sed -i '/\[::\]:80/a\\tlist listen_http\t0.0.0.0:88\n\tlist listen_http\t[::]:88
 sed -i 's/option rfc1918_filter 1/option rfc1918_filter 0/' package/network/services/uhttpd/files/uhttpd.config
 sed -i '/list listen_https[[:space:]]/s/443/4443/' package/network/services/uhttpd/files/uhttpd.config
 
-sed -i "/exit 0/i\sed -i \"/defaults/{n;s/.*/option input 'ACCEPT'/;n;s/.*/option output 'ACCEPT'/;n;s/.*/option forward 'ACCEPT'/};/zone/{n;/wan/!b;n;s/.*/option input 'ACCEPT'/;n;s/.*/option output 'ACCEPT'/;n;s/.*/option forward 'ACCEPT'/}\" /etc/config/firewall && /etc/init.d/firewall restart" package/base-files/files/etc/rc.local
+# sed -i "/exit 0/i\sed -i \"/defaults/{n;s/.*/option input 'ACCEPT'/;n;s/.*/option output 'ACCEPT'/;n;s/.*/option forward 'ACCEPT'/};/zone/{n;/wan/!b;n;s/.*/option input 'ACCEPT'/;n;s/.*/option output 'ACCEPT'/;n;s/.*/option forward 'ACCEPT'/}\" /etc/config/firewall && /etc/init.d/firewall restart" package/base-files/files/etc/rc.local
+sed -i "/exit 0/i uci set firewall.@defaults[0].input='ACCEPT' && uci set firewall.@defaults[0].forward='ACCEPT' && uci set firewall.@zone[1].input='ACCEPT' && uci set firewall.@zone[1].forward='ACCEPT' && uci commit firewall && /etc/init.d/firewall restart" package/base-files/files/etc/rc.local
 
 
 
