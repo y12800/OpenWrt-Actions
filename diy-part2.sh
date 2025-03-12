@@ -61,7 +61,7 @@ git clone --depth 1 https://github.com/coolsnowwolf/lede deng-tmp9 && mv deng-tm
 sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/ddns-scripts_aliyun/Makefile
 
 # 修改默认值
-sed -i 's/192.168.1.1/192.168.31.100/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
 sed -i 's/CONFIG_FAT_DEFAULT_IOCHARSET="iso8859-1"/CONFIG_FAT_DEFAULT_IOCHARSET="utf8"/g' target/linux/generic/config-6.6
 
@@ -76,15 +76,10 @@ sed -i '/\[::\]:80/a\\tlist listen_http\t0.0.0.0:88\n\tlist listen_http\t[::]:88
 sed -i 's/option rfc1918_filter 1/option rfc1918_filter 0/' package/network/services/uhttpd/files/uhttpd.config
 sed -i '/list listen_https[[:space:]]/s/443/4443/' package/network/services/uhttpd/files/uhttpd.config
 
-# sed -i 's/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1;s/REJECT/ACCEPT/1' package/network/config/firewall/files/firewall.config
-
-sed -i 's/REJECT/ACCEPT/g' package/network/config/firewall/files/firewall.config
-sed -i '$a config rule\n\toption name '\''OpenWrt'\''\n\toption src '\''*'\''\n\toption target '\''ACCEPT'\''\n\toption dest_port '\''22 88 4443'\''\n\tlist proto '\''tcp'\''\n\tlist proto '\''udp'\''' package/network/config/firewall/files/firewall.config
-
 sed -i "/exit 0/i\sed -i \"/defaults/{n;s/.*/option input 'ACCEPT'/;n;s/.*/option output 'ACCEPT'/;n;s/.*/option forward 'ACCEPT'/};/zone/{n;/wan/!b;n;s/.*/option input 'ACCEPT'/;n;s/.*/option output 'ACCEPT'/;n;s/.*/option forward 'ACCEPT'/}\" /etc/config/firewall && /etc/init.d/firewall restart" package/base-files/files/etc/rc.local
 
 
-# sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
 # sed -i 's/luci-theme-openwrt-2020/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
 
