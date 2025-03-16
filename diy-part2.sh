@@ -41,7 +41,7 @@ git clone --depth 1 https://github.com/sirpdboy/luci-app-cupsd.git package/deng/
 git clone --depth 1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 git clone --depth 1 https://github.com/immortalwrt-collections/luci-app-diskman.git package/deng/luci-app-diskman
 
-git clone --depth 1 https://github.com/coolsnowwolf/packages deng-tmp3 && mv deng-tmp3/net/zerotier package/deng/zerotier
+git clone --depth 1 https://github.com/coolsnowwolf/packages deng-tmp1 && mv deng-tmp1/net/zerotier package/deng/zerotier
 sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/zerotier/Makefile
 # 第三方
 mkdir -p package/deng/zerotier/files/etc/config
