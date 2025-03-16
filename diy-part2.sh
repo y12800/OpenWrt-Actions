@@ -50,11 +50,10 @@ wget -O package/deng/zerotier/files/etc/config/zerotier https://raw.githubuserco
 # mkdir -p feeds/packages/net/zerotier/files/etc/config
 # wget -O feeds/packages/net/zerotier/files/etc/config/zerotier https://raw.githubusercontent.com/y12800/OpenWrt-Actions/main/app/zerotier && chmod 644 feeds/packages/net/zerotier/files/etc/config/zerotier
 
-git clone --depth 1 https://github.com/coolsnowwolf/luci deng-tmp2 && mv deng-tmp2/applications/luci-app-ddns package/deng/luci-app-ddns
+git clone --depth 1 -b openwrt-24.10 https://github.com/immortalwrt/luci deng-tmp2 && mv deng-tmp2/applications/luci-app-ddns package/deng/luci-app-ddns
 sed -i 's#../../#$(TOPDIR)/feeds/luci/#g' package/deng/luci-app-ddns/Makefile
-git clone --depth 1 https://github.com/coolsnowwolf/packages deng-tmp3 && mv deng-tmp3/net/ddns-scripts package/deng/ddns-scripts
+git clone --depth 1 -b openwrt-24.10 https://github.com/immortalwrt/packages deng-tmp3 && mv deng-tmp3/net/ddns-scripts package/deng/ddns-scripts && mv deng-tmp3/net/ddns-scripts_aliyun package/deng/ddns-scripts_aliyun && mv deng-tmp3/net/ddns-scripts_dnspod package/deng/ddns-scripts_dnspod
 sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/ddns-scripts/Makefile
-git clone --depth 1 https://github.com/coolsnowwolf/lede deng-tmp9 && mv deng-tmp9/package/lean/ddns-scripts_aliyun package/deng/ddns-scripts_aliyun && mv deng-tmp9/package/lean/ddns-scripts_dnspod package/deng/ddns-scripts_dnspod
 sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/ddns-scripts_aliyun/Makefile
 sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/ddns-scripts_dnspod/Makefile
 
