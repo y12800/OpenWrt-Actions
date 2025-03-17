@@ -86,6 +86,7 @@ sed -i '/list listen_https[[:space:]]/s/443/4443/' package/network/services/uhtt
 # sed -i "/exit 0/i uci set firewall.@defaults[0].input='ACCEPT' && uci set firewall.@defaults[0].forward='ACCEPT' && uci set firewall.@zone[1].input='ACCEPT' && uci set firewall.@zone[1].forward='ACCEPT' && uci commit firewall && /etc/init.d/firewall restart" package/base-files/files/etc/rc.local
 # sed -i "/# Put your custom commands here that should be executed once/a uci set firewall.@defaults[0].input='ACCEPT' && uci set firewall.@defaults[0].forward='ACCEPT' && uci set firewall.@zone[1].input='ACCEPT' && uci set firewall.@zone[1].forward='ACCEPT' && uci commit firewall && /etc/init.d/firewall restart" package/base-files/files/etc/rc.local
 sed -i "1i uci set firewall.@defaults[0].input='ACCEPT' && uci set firewall.@defaults[0].forward='ACCEPT' && uci set firewall.@zone[1].input='ACCEPT' && uci set firewall.@zone[1].forward='ACCEPT' && uci commit firewall && /etc/init.d/firewall restart" package/base-files/files/etc/rc.local
+sed -i '2i /etc/init.d/ddns start' package/base-files/files/etc/rc.local
 
 
 
