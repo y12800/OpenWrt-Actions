@@ -89,6 +89,7 @@ sed -i "1i uci set firewall.@defaults[0].input='ACCEPT' && uci set firewall.@def
 sed -i '2i /etc/init.d/ddns start' package/base-files/files/etc/rc.local
 
 
+export CFLAGS="-Wno-error=misleading-indentation"
 
 
 # sed -i 's/luci-theme-openwrt-2020/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
