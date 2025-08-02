@@ -14,7 +14,7 @@ rm -rf feeds/packages/net/zerotier
 # rm -rf feeds/packages/net/speedtest-go
 # rm -rf feeds/packages/net/socat
 # rm -rf feeds/luci/applications/luci-i18n-filebrowser-zh-cn
-
+sed -i 's/--set=llvm.download-ci-llvm=true/--set=llvm.download-ci-llvm="if-unchanged"/' feeds/packages/lang/rust/Makefile
 
 # 加载主题
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git package/deng/luci-theme-argon
