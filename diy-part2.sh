@@ -7,7 +7,6 @@ rm -rf feeds/luci/applications/luci-app-filebrowser
 rm -rf feeds/luci/applications/luci-app-ddns
 rm -rf feeds/packages/net/ddns-scripts
 rm -rf feeds/packages/net/zerotier
-rm -rf feeds/packages/lang/golang
 # rm -rf feeds/luci/applications/luci-app-acme
 # rm -rf feeds/packages/net/acme
 # rm -rf feeds/packages/net/acme-acmesh
@@ -69,8 +68,6 @@ sed -i 's#../../#$(TOPDIR)/feeds/luci/#g' package/deng/luci-app-socat/Makefile
 git clone --depth 1 https://github.com/coolsnowwolf/packages deng-tmp10 && mv deng-tmp10/net/socat package/deng/socat
 sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/socat/Makefile
 
-git clone --depth 1 https://github.com/openwrt/packages deng-tmp11 && mv deng-tmp11/lang/golang package/deng/golang
-sed -i 's#../../#$(TOPDIR)/feeds/packages/#g' package/deng/golang/Makefile
 
 # 修改默认值
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
