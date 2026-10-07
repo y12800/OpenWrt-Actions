@@ -98,6 +98,6 @@ sed -i 's/option rfc1918_filter 1/option rfc1918_filter 0/' package/network/serv
 sed -i '/list listen_https[[:space:]]/s/443/4443/' package/network/services/uhttpd/files/uhttpd.config
 sed -i "1i uci set firewall.@defaults[0].input='ACCEPT' && uci set firewall.@defaults[0].forward='ACCEPT' && uci set firewall.@zone[1].input='ACCEPT' && uci set firewall.@zone[1].forward='ACCEPT' && uci commit firewall && /etc/init.d/firewall restart" package/base-files/files/etc/rc.local
 
-git clone --depth 1 -b openwrt-24.10.2 https://github.com/mirobiala/rtl88x2bu-cl.git package/kernel/rtl88x2bu-cl
+git clone --depth 1 -b openwrt-25.12.2 https://github.com/mirobiala/rtl88x2bu-cl.git package/kernel/rtl88x2bu-cl
 
 
