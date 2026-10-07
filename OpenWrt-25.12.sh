@@ -101,3 +101,4 @@ sed -i "1i uci set firewall.@defaults[0].input='ACCEPT' && uci set firewall.@def
 git clone --depth 1 -b openwrt-25.12.2 https://github.com/mirobiala/rtl88x2bu-cl.git package/kernel/rtl88x2bu-cl
 
 
+git clone --depth 1 https://github.com/lwfinger/rtw88 package/rtw88/src
