@@ -102,3 +102,55 @@ git clone --depth 1 -b openwrt-25.12.2 https://github.com/mirobiala/rtl88x2bu-cl
 
 
 git clone --depth 1 https://github.com/lwfinger/rtw88 package/rtw88/src
+
+# ====================== lwfinger rtw88 驱动(rtw_8821cu 0bda:c811) ======================
+rm -rf package/rtw88
+mkdir -p package/rtw88/src
+# 拉取lwfinger源码到src子目录
+git clone --depth 1 https://github.com/lwfinger/rtw88 package/rtw88/src
+
+# 生成外层OpenWrt包的Makefile（package/rtw88/Makefile）
+cat > package/rtw88/Makefile <<'EOT'
+# SPDX-License-Identifier: GPL-2.0-or-later
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=rtw88
+PKG_RELEASE:=1
+PKG_LICENSE:=GPL-2.0
+
+include $(INCLUDE_DIR)/kernel.mk
+include $(INCLUDE_DIR)/package.mk
+
+# 定义内核模块包：rtw_8821cu
+define KernelPackage/rtw88-8821cu
+  SUBMENU:=Wireless Drivers
+  TITLE:=Realtek rtw88 8821CU USB WiFi (0bda:c811)
+  DEPENDS:=+kmod-cfg80211 +kmod-usb-core +kmod-firmware-realtek
+  FILES:=$(PKG_BUILD_DIR)/rtw_8821cu.ko
+  AUTOLOAD:=$(call AutoProbe,rtw_8821cu)
+endef
+
+NOSTDINC_FLAGS := \
+	$(KERNEL_NOSTDINC_FLAGS) \
+	-I$(PKG_BUILD_DIR) \
+	-I$(STAGING_DIR)/usr/include/mac80211-backport \
+	-I$(STAGING_DIR)/usr/include/mac80211-backport/uapi \
+	-I$(STAGING_DIR)/usr/include/mac80211 \
+	-I$(STAGING_DIR)/usr/include/mac80211/uapi \
+	-include backport/backport.h
+
+define Build/Prepare
+	# 把src下全部源码复制到编译目录
+	mkdir -p $(PKG_BUILD_DIR)
+	cp -r $(PKG_BUILD_DIR)/../src/* $(PKG_BUILD_DIR)/
+endef
+
+define Build/Compile
+	+$(KERNEL_MAKE) $(PKG_JOBS) \
+		M="$(PKG_BUILD_DIR)" \
+		NOSTDINC_FLAGS="$(NOSTDINC_FLAGS)" \
+		modules
+endef
+
+$(eval $(call KernelPackage,rtw88-8821cu))
+EOT
