@@ -101,13 +101,8 @@ sed -i "1i uci set firewall.@defaults[0].input='ACCEPT' && uci set firewall.@def
 git clone --depth 1 -b openwrt-25.12.2 https://github.com/mirobiala/rtl88x2bu-cl.git package/kernel/rtl88x2bu-cl
 
 
-git clone --depth 1 https://github.com/lwfinger/rtw88 package/rtw88/src
-
-# ====================== lwfinger rtw88 驱动(rtw_8821cu 0bda:c811) ======================
 rm -rf package/rtw88
-mkdir -p package/rtw88/src
-# 拉取lwfinger源码到src子目录
-git clone --depth 1 https://github.com/lwfinger/rtw88 package/rtw88/src
+git clone --depth 1 https://github.com/lwfinger/rtw88 package/rtw88
 
 # 生成外层OpenWrt包的Makefile（package/rtw88/Makefile）
 cat > package/rtw88/Makefile <<'EOT'
@@ -140,9 +135,8 @@ NOSTDINC_FLAGS := \
 	-include backport/backport.h
 
 define Build/Prepare
-	# 把src下全部源码复制到编译目录
 	mkdir -p $(PKG_BUILD_DIR)
-	cp -r $(PKG_BUILD_DIR)/../src/* $(PKG_BUILD_DIR)/
+	cp -a $(CURDIR)/. $(PKG_BUILD_DIR)/
 endef
 
 define Build/Compile
